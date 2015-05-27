@@ -1,0 +1,8 @@
+---
+- name: Set mariadb repository
+  copy: src=mariadb.repo dest=/etc/yum.repos.d/mariadb.repo mode=0644 owner=root group=root force=yes
+  notify: yum update
+
+- name: install mariadb
+  yum: name=MariaDB state=present 
+  notify: restart mariadb
