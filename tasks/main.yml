@@ -4,5 +4,14 @@
   notify: yum update
 
 - name: install mariadb
-  yum: name=MariaDB state=present 
+  yum: name={{ item }} state=present 
   notify: restart mariadb
+  with_items:
+    - MariaDB
+    - MariaDB-devel
+    - MariaDB-client
+    - MariaDB-server
+    - MySQL-python
+
+- yum: name=MySQL-python state=absent
+
